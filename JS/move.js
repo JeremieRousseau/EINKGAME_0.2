@@ -12,40 +12,48 @@ bouvle infinies
 function beginbyright(){
             myLoop();
       	}
-	
-                //  set your counter to 1
+clock = 0;      
+        
+	function stop(){
+            clearInterval( clock );
+                        console.log(clock);
+    }
+
+
 
 function myLoop(){
-      console.log("myloop");
-      goNxt = "again";
-clock = setInterval( function chooseMovement(){
-	switch(goNxt){
-            case "again" : if ( goY != stopY ) {
-            console.log("goY");
-                        if ( goY < stopY) { goRight();
-                        if (goY != stopY) { goNxt = "again"; }else{ if (goX != stopX){ goNxt = again;
-                                                             }else{ goNxt = "stop";  } }
-                      
-                        }else{  goLeft();
-                        if (goY != stopY) { goNxt = "again"; }else{ if (goX != stopX) { goNxt = again;
-                                                            }else{ goNxt = "stop";  } }
-                        }     
-                    }else{
-                         if ( goX < stopX) { go>Up();
-                              if (goX != stopX) { goNxt = "again"; }else{ goNxt = "stopX";  }
-                      
-                        }else{  goDown();
-                             if (goX != stopX) { goNxt = "again"; }else{ goNxt = "stopX"; }
-                        }   
-                    }
-                             
+goNxt = "again";
+
+setTimeout( chooseMovement, 250);
+ function chooseMovement(){
+
+switch(goNxt){
+case "again" :
+            if ( goY != stopY ) {
+                console.log("A");
+            if ( goY < stopY) { goRight(); }
+            if( goY > stopY ){ goLeft(); }
+            if ( goY != stopY) { goNxt = "again"; }else{ if (goX != stopX) { goNxt = "again";
+                                   }else{ goNxt = "stop";  } }   
+}else{
+            console.log("B");
+            if ( goX < stopX) { goUp(); 
+            }
+            if ( goX > stopX) {  goDown(); 
+            }
+            if (goX != stopX) { goNxt = "again"; }else{ goNxt = "stop";  }           
+}
+
+break;                       
             case "stop" :
-                    console.log("clearTimeout");
-                    clearTimeout(clock); 
+            console.log(goNxt);
+           
             break;
             }
-		}, 500);
+		}
 }
+
+
 
   
 		
