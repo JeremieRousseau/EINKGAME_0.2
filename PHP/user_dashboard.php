@@ -2,14 +2,7 @@
 session_start();
 ?>
   <?php 
-	<!--
-	/* if(isset($_SESSION["user_name_s"])){
-		echo $_SESSION["user_name_s"];
-		echo "click here ";
-		echo "<a href='logout.php' title='logout' >to Logout.<a>";
-	  }
-	  */-->
-	?>
+
 <!DOCTYPE html>
   <html>
 	<head>
