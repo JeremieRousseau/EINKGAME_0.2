@@ -1,133 +1,96 @@
 
-function beginbyright(){
-   sleep();
-if ( goY !== stopY && goX !== stopX  ) {
-
-                              chooseMovement();
-                              
-}else{
-   console.log("STOPA");
+function goToTheTarget(){
+     console.log("=====================START===============");
+     clock = setInterval(chooseMovement, 1000);
+     console.log("stop");
 }
 
-}
+diffPath = [];
+GOTO = "";
+
 function chooseMovement(){
-needle = false;
-
-if ( goY < stopY && goX < stopX  && needle == false ) {
-           goDiaUpRight();
-            needle = true;
+     needle = false;
+     console.log("---"+GOTO);
+     
+     
+     if ( GOTO ==  "DiaUpRight" ) {
+          goDiaUpRight();
+          needle = true;
+	 }
+     if ( GOTO ==  "DiaUpLeft" ) {
+          goDiaUpLeft();
+          needle = true;
+	 }
+          if ( GOTO ==  "DiaDownRight" ) {
+          goDiaDownRight();
+          needle = true;
+	 }
+     if ( GOTO == "DiaDownLeft" ) {
+          console.log("T_diadownleft");
+          goDiaDownLeft();
+          needle = true;
+	 }
+               if ( GOTO ==  "Right" ) {
+          goRight();
+          GOTO = "";
+          needle = true;
+	 }
+          if ( GOTO ==  "Left" ) {
+          goLeft();
+          needle = true;
+	 }
+          if ( GOTO ==  "Down" ) {
+          goDown();
+          needle = true;
+	 }
+          if ( GOTO ==  "Up" ) {
+          goUp();
+          got= "addf";
+          needle = true;
+	 }
+          if ( goY < stopY && goX < stopX  && needle == false ) {
+                      goDiaUpRight();
+                      needle = true;
+          }
+          if ( goY > stopY && goX < stopX  && needle == false ) {
+                      goDiaDownRight();
+                      needle = true;
+          }
+          if ( goY < stopY && goX > stopX  && needle == false ) {
+                      goDiaUpLeft();
+                      needle = true;
+          }
+          if ( goY > stopY && goX > stopX  && needle == false ) {
+                      goDiaDownLeft();
+                      needle = true;
+          }
+          if ( goX < stopX && needle == false && GOTO == "" ) {
+                     goRight();
+                     needle = true;
+          }
+          if ( goY < stopY  && needle == false ){
+                     goUp();
+                     needle = true;
+             
+          
+          }
+          if ( goY > stopY && needle == false ){
+                     goDown(); 
+                     needle = true;
+          }
+          if ( goX > stopX && needle == false ){
+                     goLeft(); 
+                     needle = true;
+          }
+     if ( goX == stopX && goY == stopY ) {
+          clearInterval(clock);
+     }
+     
+     returnId = ( goX + v + goY );
+     if ( diffPath.indexOf( goX + v + goY ) == -1) {
+     console.log(returnId+"deja dans array");
+     }
+     else{
+          diffPath.push( returnId );
+     }
 }
-if ( goY < stopY && goX > stopX  && needle == false ) {
-           goDiaDownRight();
-            needle = true;
-}
-if ( goY > stopY && goX < stopX  && needle == false ) {
-           goDiaUpLeft();
-            needle = true;
-}
-if ( goY > stopY && goX > stopX  && needle == false ) {
-           goDiaDownLeft();
-            needle = true;
-}
-if ( goY < stopY && needle == false ) {
-           oRight();
-            needle = true;
-}
-if ( goX < stopX && needle == false ){
-           goUp(); 
-            needle = true;
-}
-if ( goX > stopX && needle == false ){
-           goDown(); 
-            needle = true;
-}
-if ( goY > stopY && needle == false ){
-           goLeft(); 
-            needle = true;
-}
-
-}
-
-
-function sleep(){
-
-xhrSlp = new XMLHttpRequest(); 
-
-	  xhrSlp.open("POST", "../PHP/Class_sleep.php", true);
-	  xhrSlp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-
-	  //invoice a big string of color and a number to generate a save with two post treatement
-	var sendparams = "Cid="+ (goX + v + goY) ;
-	xhrSlp.send(sendparams);
-
-	xhrSlp.onreadystatechange = function(){
-		if(xhrSlp.readyState == 4 && xhrSlp.status == 200){
-         
-         console.log(xhrSlp.responseText);
-		beginbyright();	
-		}
-    }
-}
-
-
-
-/*******************************************************
-********************************************************/
-
-
-
-
-
-
-	function goRight(){
-		Id( goX + v + goY ).className = "floor";
-		goX += 0;
-		goY += 1;
-		Id( goX + v + goY ).className = "unit";
-
-	}
-	
-	function goDiaUpRight(){
-		Id( goX + v + goY ).className = "floor";
-		goX += 1;
-		goY += 1;
-		Id( goX + v + goY ).className = "unit";
-	}
-	
-	function goDiaDownRight(){
-		Id( goX + v + goY ).className = "floor";
-		goX -= 1;
-		goY += 1;
-		Id( goX + v + goY ).className = "unit";
-	}
-	
-	function goLeft(){
-		Id( goX + v + goY ).className = "floor";
-		goX -= 0;
-		goY -= 1;
-		Id( goX + v + goY ).className = "unit";
-	}
-	function goDiaUpLeft(){
-		Id( goX + v + goY ).className = "floor";
-		goX += 1;
-		goY -= 1;
-		Id( goX + v + goY ).className = "unit";
-	}
-	function goDiaDownLeft(){
-		Id( goX + v + goY ).className = "floor";
-		goX -= 1;
-		goY -= 1;
-		Id( goX + v + goY ).className = "unit";
-	}
-	function goUp(){
-		Id( goX + v + goY ).className = "floor";
-		goX += 1;
-		goY += 0;
-		Id( goX + v + goY ).className = "unit";
-	}
-	function goDown(){
-		Id( goX + v + goY ).className = "floor";
-		goX -= 1;
-		goY += 0;
-		Id( goX + v + goY ).className = "unit";
-	}
