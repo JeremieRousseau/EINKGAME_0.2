@@ -6,18 +6,20 @@
 
 	function goRight(){
 		console.log("goR");
+
 		Id( goX + v + goY ).className = "floor";
 		goX += 1;
-		goY += 0;
-		block = Id( goX + v + goY ).className;
-		if ( block == "wall") {
+		goY += 0;	
+		if ( diffPath.indexOf( goX + v + goY )  >= 0 ) {
             		goX -= 1;
 					goY += 0;
 					console.log("wall");
 					GOTO = "DiaDownRight";
-        }else{
-			GOTO = "";
-		}
+        }
+	if ( goX > SIZE ) {
+		goX -= 1;
+		alert("STOP");
+	}
 		Id( goX + v + goY ).className = "unit";
 	}
 	
@@ -26,16 +28,13 @@
 		Id( goX + v + goY ).className = "floor";
 		goX += 1;
 		goY += 1;
-		block = Id( goX + v + goY ).className;
-		if ( block == "wall") {
+		if ( diffPath.indexOf( goX + v + goY ) >= 0) {
             		goX -= 1;
 					goY -= 1;
 					GOBACKWALL = true;
 					console.log("wall");
 					GOTO = "DiaUpLeft";
-        }else{
-			GOTO = "";
-		}
+        }
 		Id( goX + v + goY ).className = "unit";
 	}
 	
@@ -44,16 +43,13 @@
 		Id( goX + v + goY ).className = "floor";
 		goX += 1;
 		goY -= 1;
-		block = Id( goX + v + goY ).className;
-		if ( block == "wall") {
+		if ( diffPath.indexOf( goX + v + goY ) >= 0) {
             		goX -= 1;
 					goY += 1;		
 					console.log("wall");
 				//	GOTO = "DiaDownLeft";
 
-        }else{
-			GOTO = "";
-		}
+        }
 		Id( goX + v + goY ).className = "unit";
 	}
 	
@@ -63,15 +59,17 @@
 		Id( goX + v + goY ).className = "floor";
 		goX -= 1;
 		goY += 0;
-		block = Id( goX + v + goY ).className;
-		if ( block == "wall") {
+		console.log(diffPath.indexOf( goX + v + goY )+"merde");
+		if ( diffPath.indexOf( goX + v + goY ) >= 0) {
             		goX += 1;
 					goY += 0;
 					console.log("wall");
 					console.log(GOTO);
 					GOTO = "DiaDownLeft";
-        }else{
-			GOTO = "";
+        }
+		if ( goX == 0 ) {
+			goY += 1;
+			alert("STOP");
 		}
 		Id( goX + v + goY ).className = "unit";
 	}
@@ -80,15 +78,12 @@
 		Id( goX + v + goY ).className = "floor";
 		goX -= 1;
 		goY += 1; 
-		block = Id( goX + v + goY ).className;
-		if ( block == "wall") {
+		if ( diffPath.indexOf( goX + v + goY ) >= 0) {
             		goX += 1;
 					goY -= 1;
 					console.log("wall");
 					GOTO = "Left";
-        }else{
-			GOTO = "";
-		}
+        }
 		Id( goX + v + goY ).className = "unit";
 	}
 	function goDiaDownLeft(){
@@ -96,15 +91,14 @@
 		Id( goX + v + goY ).className = "floor";
 		goX -= 1;
 		goY -= 1;
-		block = Id( goX + v + goY ).className;
-		if ( block == "wall") {
+
+		if ( diffPath.indexOf( goX + v + goY ) >= 0) {	
             		goX += 1;
 					goY += 1;
 					console.log("wall");
 					GOTO = "Down";
-        }else{
-			GOTO = "";
-		}
+        }
+
 		Id( goX + v + goY ).className = "unit";
 	}
 	function goUp(){
@@ -112,33 +106,34 @@
 		Id( goX + v + goY ).className = "floor";
 		goX += 0;
 		goY += 1;
-		block = Id( goX + v + goY ).className;
-		if ( block == "wall") {
+		if ( diffPath.indexOf( goX + v + goY ) >= 0 ) {
             		goX += 0;
 					goY -= 1;
 					console.log("wall");
 					GOTO = "DiaUpRight";
 
-        }else{
-			GOTO = "";
+        }
+		if ( goY > SIZE ) {
+			goY -= 1;
+			alert("STOP");
 		}
-		
 		Id( goX + v + goY ).className = "unit";
 	}
+	
 	function goDown(){
 		console.log("goD");
 		Id( goX + v + goY ).className = "floor";
 		goX += 0;
 		goY -= 1;
-		block = Id( goX + v + goY ).className;
-		if ( block == "wall") {
+		if ( diffPath[ (goX + v + goY) ] >= 0) {
             		goX += 0;
 					goY += 1;
 					console.log("wall");
 					GOTO = "DiaDownRight";
-
-        }else{
-			GOTO = "";
+        }
+		if ( goY == 0 ) {
+			goY += 1;
+			alert("STOP");
 		}
 		Id( goX + v + goY ).className = "unit";
 	}
