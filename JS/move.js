@@ -2,6 +2,31 @@
 function goToTheTarget(){
      console.log("=====================START===============");
      clock = setInterval(chooseMovement, 1000);
+               if ( goY < stopY && goX < stopX ) {
+			MUSTGOTO = "DIA_UP_RIGHT";
+          }
+          if ( goY > stopY && goX < stopX ) {
+				MUSTGOTO = "DIA_DOWN_RIGHT";
+          }
+          if ( goY < stopY && goX > stopX ) {
+				MUSTGOTO = "DIA_UP_LEFT";
+          }
+          if ( goY > stopY && goX > stopX ) {
+				MUSTGOTO = "DIA_DOWN_LEFT";
+          }
+          if ( goX < stopX ) {
+				MUSTGOTO = "RIGHT";
+          }
+          if ( goY < stopY ){
+				GOTO = "LEFT";
+          }
+          if ( goX < stopX ){
+                MUSTGOTO = "UP";
+          }
+          if ( goY > stopY ){
+				MUSTGOTO = "DOWN";
+          }
+
      console.log("stop");
 }
 
@@ -10,44 +35,6 @@ GOTO = "";
 
 function chooseMovement(){
      needle = false;
-     console.log("---"+GOTO);
-     
-     
-     if ( GOTO ==  "DiaUpRight" ) {
-          goDiaUpRight();
-          needle = true;
-	 }
-     if ( GOTO ==  "DiaUpLeft" ) {
-          goDiaUpLeft();
-          needle = true;
-	 }
-          if ( GOTO ==  "DiaDownRight" ) {
-          goDiaDownRight();
-          needle = true;
-	 }
-     if ( GOTO == "DiaDownLeft" ) {
-          console.log("T_diadownleft");
-          goDiaDownLeft();
-          needle = true;
-	 }
-               if ( GOTO ==  "Right" ) {
-          goRight();
-          GOTO = "";
-          needle = true;
-	 }
-          if ( GOTO ==  "Left" ) {
-          goLeft();
-          needle = true;
-	 }
-          if ( GOTO ==  "Down" ) {
-          goDown();
-          needle = true;
-	 }
-          if ( GOTO ==  "Up" ) {
-          goUp();
-          got= "addf";
-          needle = true;
-	 }
           if ( goY < stopY && goX < stopX  && needle == false ) {
                       goDiaUpRight();
                       needle = true;
@@ -64,7 +51,7 @@ function chooseMovement(){
                       goDiaDownLeft();
                       needle = true;
           }
-          if ( goX < stopX && needle == false && GOTO == "" ) {
+          if ( goX < stopX && needle == false ) {
                      goRight();
                      needle = true;
           }
@@ -79,7 +66,7 @@ function chooseMovement(){
                      needle = true;
           }
           if ( goX > stopX && needle == false ){
-                     goLeft(); 
+                     LEFT(); 
                      needle = true;
           }
      if ( goX == stopX && goY == stopY ) {
@@ -87,10 +74,11 @@ function chooseMovement(){
      }
      
      returnId = ( goX + v + goY );
-     if ( diffPath.indexOf( goX + v + goY ) == -1) {
-     console.log(returnId+"deja dans array");
+     if ( diffPath.indexOf( ( goX + v + goY) ) >= 0) {
+          console.log(returnId+"deja dans array");
      }
      else{
           diffPath.push( returnId );
      }
+
 }
