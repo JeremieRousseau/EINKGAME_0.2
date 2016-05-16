@@ -4,136 +4,136 @@
 
 
 
-	function goRight(){
+	function r(){
 		console.log("goR");
-
-		Id( goX + v + goY ).className = "floor";
-		goX += 1;
-		goY += 0;	
+				goX += 1;
+				goY += 0;
+			right = true;
 		if ( diffPath.indexOf( goX + v + goY )  >= 0 ) {
-            		goX -= 1;
+					goX -= 1;
 					goY += 0;
-					console.log("wall");
-					GOTO = "DiaDownRight";
-        }
-	if ( goX > SIZE ) {
-		goX -= 1;
-		alert("STOP");
-	}
-		Id( goX + v + goY ).className = "unit";
+					right = false;
+		}
+		if ( goX > SIZE ) {
+			goX -= 1;
+			right = false;
+		}
+			return right;
 	}
 	
-	function goDiaUpRight(){
-		console.log("goDiaUR");
-		Id( goX + v + goY ).className = "floor";
+	function dur(){
 		goX += 1;
 		goY += 1;
+		diaUpRight = true
 		if ( diffPath.indexOf( goX + v + goY ) >= 0) {
             		goX -= 1;
 					goY -= 1;
-					GOBACKWALL = true;
-					console.log("wall");
-					GOTO = "DiaUpLeft";
+					diaUpRight = false;
         }
-		Id( goX + v + goY ).className = "unit";
+		if ( goX > SIZE && goy  ) {
+            		goX -= 1;
+					goY -= 1;
+					diaUpRight = false;
+		}
+		return diaUpRight;
 	}
 	
-	function goDiaDownRight(){
+	function ddr(){
 		console.log("goDiaR");
-		Id( goX + v + goY ).className = "floor";
 		goX += 1;
 		goY -= 1;
+		diaDownRight = true
 		if ( diffPath.indexOf( goX + v + goY ) >= 0) {
             		goX -= 1;
-					goY += 1;		
-					console.log("wall");
-				//	GOTO = "DiaDownLeft";
-
-        }
-		Id( goX + v + goY ).className = "unit";
+					goY += 1;
+					diaDownRight = false;
+		}
+		if ( goX > SIZE && goY < 1 ){
+			goX -= 1;
+			goY += 1;
+			diaDownRight = false;
+		}
+		return diaDownRight;
 	}
 	
 		
-	function goLeft(){
+	function l(){
 	console.log("goL");
-		Id( goX + v + goY ).className = "floor";
+
 		goX -= 1;
 		goY += 0;
-		console.log(diffPath.indexOf( goX + v + goY )+"merde");
+		left = true;
 		if ( diffPath.indexOf( goX + v + goY ) >= 0) {
             		goX += 1;
 					goY += 0;
-					console.log("wall");
-					console.log(GOTO);
-					GOTO = "DiaDownLeft";
+					left = false;
         }
 		if ( goX == 0 ) {
 			goY += 1;
-			alert("STOP");
+			left = false;
 		}
-		Id( goX + v + goY ).className = "unit";
+		return left;
 	}
-	function goDiaUpLeft(){
+	function dul(){
 		console.log("goDiaUL");
-		Id( goX + v + goY ).className = "floor";
 		goX -= 1;
-		goY += 1; 
+		goY += 1;
+		diaUpLeft = true;
 		if ( diffPath.indexOf( goX + v + goY ) >= 0) {
             		goX += 1;
 					goY -= 1;
-					console.log("wall");
-					GOTO = "Left";
+					diaUpLeft = false;
         }
-		Id( goX + v + goY ).className = "unit";
+		return diaUpLeft;
 	}
-	function goDiaDownLeft(){
+	function ddl(){
 		console.log("goDiaD");
-		Id( goX + v + goY ).className = "floor";
+
 		goX -= 1;
 		goY -= 1;
-
+		diaDownLeft = true;
 		if ( diffPath.indexOf( goX + v + goY ) >= 0) {	
             		goX += 1;
 					goY += 1;
-					console.log("wall");
-					GOTO = "Down";
+					diaDownLeft = false;
         }
-
-		Id( goX + v + goY ).className = "unit";
+		if (goX < 1 && goY < 1) {
+		goX += 1;
+		goY += 1;
+		}
+		return diaDownLeft;
 	}
-	function goUp(){
-		console.log("goU");
-		Id( goX + v + goY ).className = "floor";
+	
+	function u(){
 		goX += 0;
 		goY += 1;
+		up = true;
 		if ( diffPath.indexOf( goX + v + goY ) >= 0 ) {
             		goX += 0;
 					goY -= 1;
-					console.log("wall");
-					GOTO = "DiaUpRight";
-
+					up = false;
         }
 		if ( goY > SIZE ) {
 			goY -= 1;
-			alert("STOP");
+			up = false;
 		}
-		Id( goX + v + goY ).className = "unit";
+		return up;
 	}
 	
-	function goDown(){
+	function d(){
 		console.log("goD");
 		Id( goX + v + goY ).className = "floor";
 		goX += 0;
 		goY -= 1;
-		if ( diffPath[ (goX + v + goY) ] >= 0) {
+		down = true;
+		if ( diffPath.indexOf( goX + v + goY) >= 0) {
             		goX += 0;
 					goY += 1;
-					console.log("wall");
-					GOTO = "DiaDownRight";
+					down = false;
         }
 		if ( goY == 0 ) {
 			goY += 1;
-			alert("STOP");
-		}
-		Id( goX + v + goY ).className = "unit";
+			down = false;
+		} 
+		return down;
 	}
